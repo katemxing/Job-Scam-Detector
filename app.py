@@ -56,3 +56,31 @@ def get_data():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+#verify company address
+
+import nlp
+import pandas as pd
+import googlemaps
+
+gmaps = googlemaps.Client(key='AIzaSyAKJ0feIXkwShLwu0L9TRczbA1jHFjvZQI')
+
+
+
+#input an address
+address= input("Enter address: ")
+
+
+# Geocoding an address
+geocode_result = gmaps.geocode(address)
+
+if geocode_result == []:
+    print ("This address is invalid")
+else:
+    geocode_result= geocode_result[0]
+    
+    if 'plus_code' in geocode_result:
+        print("The Company address is valid")
+    else:
+        print("This address is vague, This job invite is likely a scam")
