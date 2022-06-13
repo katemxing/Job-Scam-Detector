@@ -64,7 +64,7 @@ import nlp
 import pandas as pd
 import googlemaps
 
-gmaps = googlemaps.Client(key='AIzaSyAKJ0feIXkwShLwu0L9TRczbA1jHFjvZQI')
+gmaps = googlemaps.Client(key='API KEY')
 
 
 
