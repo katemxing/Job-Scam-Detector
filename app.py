@@ -12,7 +12,7 @@ correction = ""
 model_pipeline = load("scam_finder.joblib")
 result = ""
 probability = ""
-Gmap_key=os.environ.get('GoogleMapAPIKey')
+Gmap_key=os.environ.get('GoogleMapAPIKey')#set environment variable
 
 def get_prediction(query):
     res = model_pipeline.predict_proba([query])
@@ -62,7 +62,7 @@ if __name__ == '__main__':
     
 #verify company address
 apikey = os.environ.get()
-import nlp
+#import nlp
 import pandas as pd
 import googlemaps
 gmaps = googlemaps.Client(key=apikey)
