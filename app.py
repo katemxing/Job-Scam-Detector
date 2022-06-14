@@ -13,6 +13,7 @@ model_pipeline = load("scam_finder.joblib")
 result = ""
 probability = ""
 Gmap_key=os.environ.get('GoogleMapAPIKey')
+
 def get_prediction(query):
     res = model_pipeline.predict_proba([query])
     real = res[0][0]
