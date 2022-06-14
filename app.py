@@ -6,13 +6,16 @@ from textblob import TextBlob
 import nltk
 from nltk.corpus import stopwords
 import os
+import pandas as pd
+import googlemaps
+
 
 stop_words = stopwords.words("english")
 correction = ""
 model_pipeline = load("scam_finder.joblib")
 result = ""
 probability = ""
-apikey=os.environ.get('GoogleMapAPIKey')#set environment variable
+apikey=os.environ.get('GoogleMapAPIKey')#retrieve environment variable
 
 def get_prediction(query):
     res = model_pipeline.predict_proba([query])
@@ -40,37 +43,23 @@ def check(text):
         g = GingerIt()
         h = g.parse(text)
         return len(h['corrections'])
-'''#verify company address
-#import nlp
-import pandas as pd
-import googlemaps
-gmaps = googlemaps.Client(key=apikey)
 
-#input an address
-address= input("Enter address: ")
-
+#verify company address
 # Geocoding an address
+gmaps = googlemaps.Client(key=apikey)
 geocode_result = gmaps.geocode(address)
 
-if geocode_result == []:
-    print ("This address is invalid")
-else:
-    geocode_result= geocode_result[0]
-    if 'plus_code' in geocode_result:
-        print("The Company address is valid")
-    else:
-        print("This address is vague, This job invite is likely a scam")
-'''
 
 def get_map_info():
     if geocode_result == []:
-        return "This address is invalid"
+        output="This address is invalid"
     else:
         geocode_result= geocode_result[0]
         if 'plus_code' in geocode_result:
-            return "The Company address is valid"
+            output="The Company address is valid"
         else:
-            return "This address is vague, This job invite is likely a scam"
+            output="This address is vague, This job invite is likely a scam"
+    return output #return desinated string content
 
 
 @app.route('/')
@@ -85,7 +74,7 @@ def get_data():
         address = request.form['addr']
         mistake=check(text)
         result, probability = get_prediction(text)
-        get_map_info(address)
+        address=get_map_info(address)
         return render_template('forms/Home.html', result=result, prob = probability,mis=mistake, map=address)
 
 
