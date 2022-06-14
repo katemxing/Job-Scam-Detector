@@ -61,11 +61,14 @@ if __name__ == '__main__':
     
     
 #verify company address
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8f8c5723df4422ce2b68716d7cef6ddadab694e3
 #import nlp
 import pandas as pd
 import googlemaps
-gmaps = googlemaps.Client(key=apikey)
+gmaps = googlemaps.Client(key=Gmap_key)
 
 #input an address
 address= input("Enter address: ")
