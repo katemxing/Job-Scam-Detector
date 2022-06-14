@@ -1,12 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request
 from joblib import load
-import numpy as np
 from gingerit.gingerit import GingerIt
-from textblob import TextBlob
 import nltk
 from nltk.corpus import stopwords
 import os
-import pandas as pd
 import googlemaps
 
 
@@ -45,12 +42,9 @@ def check(text):
         return len(h['corrections'])
 
 #verify company address
-# Geocoding an address
-gmaps = googlemaps.Client(key=apikey)
-geocode_result = gmaps.geocode(address)
-
-
-def get_map_info():
+def get_map_info(address):
+    gmaps = googlemaps.Client(key=apikey)
+    geocode_result = gmaps.geocode(address)
     if geocode_result == []:
         output="This address is invalid"
     else:
@@ -71,10 +65,10 @@ def home():
 def get_data():
     if request.method == 'POST':
         text = request.form['text']
-        address = request.form['addr']
+        addr = request.form['addr']
         mistake=check(text)
         result, probability = get_prediction(text)
-        address=get_map_info(address)
+        address=get_map_info(addr)
         return render_template('forms/Home.html', result=result, prob = probability,mis=mistake, map=address)
 
 
