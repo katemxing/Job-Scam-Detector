@@ -40,35 +40,11 @@ def check(text):
         g = GingerIt()
         h = g.parse(text)
         return len(h['corrections'])
-
-
-@app.route('/')
-def home():
-    return render_template('forms/Home.html')
-
-
-@app.route('/', methods=['POST', 'GET'])
-def get_data():
-    if request.method == 'POST':
-        query = request.form['search']
-        mistake=check(query)
-        result, probability = get_prediction(query)
-        return render_template('forms/Home.html', result=result, prob = probability,mis=mistake)
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
-    
-    
-#verify company address
-<<<<<<< HEAD
-
-=======
->>>>>>> 8f8c5723df4422ce2b68716d7cef6ddadab694e3
+'''#verify company address
 #import nlp
 import pandas as pd
 import googlemaps
-gmaps = googlemaps.Client(key=Gmap_key)
+gmaps = googlemaps.Client(key=apikey)
 
 #input an address
 address= input("Enter address: ")
@@ -84,3 +60,36 @@ else:
         print("The Company address is valid")
     else:
         print("This address is vague, This job invite is likely a scam")
+'''
+
+def get_map_info():
+    if geocode_result == []:
+        return "This address is invalid"
+    else:
+        geocode_result= geocode_result[0]
+        if 'plus_code' in geocode_result:
+            return "The Company address is valid"
+        else:
+            return "This address is vague, This job invite is likely a scam"
+
+
+@app.route('/')
+def home():
+    return render_template('forms/Home.html')
+
+
+@app.route('/', methods=['POST', 'GET'])
+def get_data():
+    if request.method == 'POST':
+        text = request.form['text']
+        address = request.form['addr']
+        mistake=check(text)
+        result, probability = get_prediction(text)
+        get_map_info(address)
+        return render_template('forms/Home.html', result=result, prob = probability,mis=mistake, map=address)
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+    
+    
