@@ -5,6 +5,7 @@ import nltk
 from nltk.corpus import stopwords
 import os
 import googlemaps
+import pysbd
 
 
 stop_words = stopwords.words("english")
@@ -66,7 +67,12 @@ def home():
 @app.route('/', methods=['POST', 'GET'])
 def get_data():
     if request.method == 'POST':
-        text = request.form['text']
+        #segment the input text by '.', transfer the output list back to string
+        rawtext = request.form['text']
+        seg = pysbd.Segmenter(language='en', clean=False) #define segmenter
+        textlist = seg.segment(rawtext)
+        for i in (0,len(textlist)-1):
+            text = textlist[i]
         mistake=check(text)
         #request for address variable if user inputs, otherwise use output as null
         try:
