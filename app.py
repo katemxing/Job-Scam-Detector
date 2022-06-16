@@ -75,7 +75,7 @@ def get_data():
         except:
             address='You did not provide any company address.'
         result, probability = get_prediction(text)
-        
+ 
         return render_template('forms/Home.html', result=result, prob = probability,mis=mistake, map=address)
 
 
