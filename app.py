@@ -14,6 +14,8 @@ result = ""
 probability = ""
 apikey=os.environ.get('GoogleMapAPIKey')#retrieve environment variable
 
+
+
 def get_prediction(query):
     res = model_pipeline.predict_proba([query])
     real = res[0][0]
@@ -65,10 +67,15 @@ def home():
 def get_data():
     if request.method == 'POST':
         text = request.form['text']
-        addr = request.form['addr']
         mistake=check(text)
+        #request for address variable if user inputs, otherwise use output as null
+        try:
+            addr = request.form['addr']
+            address=get_map_info(addr)
+        except:
+            address='You did not provide any company address.'
         result, probability = get_prediction(text)
-        address=get_map_info(addr)
+        
         return render_template('forms/Home.html', result=result, prob = probability,mis=mistake, map=address)
 
 
