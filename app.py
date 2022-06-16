@@ -6,6 +6,7 @@ from nltk.corpus import stopwords
 import os
 import googlemaps
 import pysbd
+import pandas as  pd
 
 
 stop_words = stopwords.words("english")
@@ -14,7 +15,7 @@ model_pipeline = load("scam_finder.joblib")
 result = ""
 probability = ""
 apikey=os.environ.get('GoogleMapAPIKey')#retrieve environment variable
-
+df=pd.read_csv('fake_job_postings.csv')
 
 
 def get_prediction(query):
@@ -44,6 +45,8 @@ def check(text):
         h = g.parse(text)
         return len(h['corrections'])
 
+
+
 #verify company address
 def get_map_info(address):
     gmaps = googlemaps.Client(key=apikey)
@@ -57,6 +60,8 @@ def get_map_info(address):
         else:
             output="This address is vague, This job invite is likely a scam"
     return output #return desinated string content
+
+def match_position
 
 
 @app.route('/')
