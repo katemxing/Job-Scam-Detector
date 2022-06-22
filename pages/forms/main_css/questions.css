@@ -1,0 +1,92 @@
+.second-half-frame{
+    /*background-color: lightblue;*/
+    width: 100%;
+    height: 624px;
+    display: grid;
+    grid-template-columns: 1.03fr 5px 1fr;
+}
+
+/*
+    Question Part
+*/
+
+.big-box-out{
+    width: 100%;
+    height: 400px;
+    /*background-color: lightgreen;*/
+}
+
+.big-box-in{
+    padding-left: 130px;
+    padding-top: 3px;
+}
+
+.big-textarea{
+    outline: none;
+    font-size: 34px;
+    resize: none;
+    border-radius: 10px;
+    box-shadow: inset 1px 3px 5px rgb(193, 190, 190);
+    background-color: rgb(234, 231, 226);
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.small-box-out{
+    width: 100%;
+    height: 100px;
+    /*background-color: aqua;*/
+}
+
+.small-box-in{
+    padding-left: 130px;
+    padding-top: 10px;
+}
+
+.small-textarea{
+    outline: none;
+    font-size: 34px;
+    resize: none;
+    border-radius: 10px;
+    box-shadow: inset 1px 3px 5px rgb(193, 190, 190);
+    background-color: rgb(234, 231, 226);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.button-box-out{
+    width: 100%;
+    height: 120px;
+    /*background-color: blueviolet;*/
+}
+
+.button-box-in{
+    padding-left: 575px;
+    padding-top: 3px;
+}
+
+.button{
+    font-size: 23px;
+    border-radius: 10px;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    background-color: rgb(244, 120, 120);
+    outline: none;
+    border: none;
+    color: rgb(94, 87, 87);
+    font-family: Arvo;
+}
+
+/*
+    Bar Part
+*/
+
+.mid-bar{
+    background-color: rgb(234, 231, 226);
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.m2, .m4, .m6, .m8, .m10{
+    background-color: #444466;
+}

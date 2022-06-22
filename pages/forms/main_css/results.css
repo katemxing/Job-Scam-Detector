@@ -1,0 +1,80 @@
+/*
+    Result Part
+*/
+
+.result-frame-out{
+    padding-left: 190px;
+}
+
+.result-frame-in{
+    width: 500px;
+    height: 500px;
+    background-color: rgb(234, 231, 226);
+
+    border: 5px solid lightgoldenrodyellow;
+    border-radius: 15px;
+}
+
+.result-box{
+    text-align: center;
+    padding-top: 10px;
+}
+
+.result-text{
+    font-size: 100px;
+    display: inline;
+    color: rgb(255, 166, 0);
+}
+
+.scam-box{
+    text-align: center;
+}
+
+.scam-text{
+    color: #13bffe;
+    display: inline;
+    font-size: 80px;
+}
+
+.prob-dis-box{
+    text-align: center;
+    margin: 0;
+}
+
+.prob-dis-text{
+    color: rgb(255, 166, 0);
+    font-size: 30px;
+    display: inline;
+
+}
+
+.mistake-box{
+    text-align: center;
+}
+
+.mistake-text{
+    display: inline;
+    color: rgb(255, 166, 0);
+    font-size: 30px;
+
+}
+
+.map-box{
+    text-align: center;
+}
+
+.map-text{
+    display: inline;
+    display: inline;
+    color: rgb(255, 166, 0);
+    font-size: 30px;
+
+}
+
+.rest-result-frame{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    width: 100%;
+    height: 200px;
+    margin-top: 35px;
+}

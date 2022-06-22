@@ -1,0 +1,54 @@
+.whole-frame{
+    background-color: #444466;
+    width: 100vh;
+    width: 100%;
+    height: 100%;
+    height: 100vh;
+    color: white;
+}
+
+.header{
+    width: 100%;
+    text-align: center;
+    /*background-color: antiquewhite;*/
+    height: 300px;
+}
+
+.header-text{
+    padding-top: 115px;
+    margin: 0;
+    font-size: 120px;
+    color: #13bffe;
+}
+
+.title{
+    position: fixed;
+    background-color: rgb(234, 231, 226);
+    top: 0px;
+    width: 100%;
+    height: 100px;
+    display: grid;
+    grid-template-columns: 100px 1fr 270px;
+}
+
+.logo-box{
+    padding-left: 60px;
+    padding-top: 10px;
+}
+
+.logo-pic{
+    width: 80px;
+    border-radius: 50%;
+}
+
+.contact{
+    text-align: center;
+    font-size: 30px;
+    font-family: Arial;
+}
+
+.contact-text{
+    padding-top: 0px;
+    color: rgb(99, 98, 98);
+    font-family: Arvo;
+}
