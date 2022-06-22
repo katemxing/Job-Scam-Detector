@@ -6,7 +6,7 @@ from nltk.corpus import stopwords
 import os
 import googlemaps
 import pysbd
-import pandas as  pd
+
 
 
 stop_words = stopwords.words("english")
