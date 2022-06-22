@@ -61,7 +61,7 @@ def get_map_info(address):
             output="This address is vague, This job invite is likely a scam"
     return output #return desinated string content
 
-def match_position
+
 
 
 @app.route('/')
