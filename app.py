@@ -6,26 +6,19 @@ from nltk.corpus import stopwords
 import os
 import googlemaps
 import pysbd
-
-
-
 stop_words = stopwords.words("english")
 correction = ""
-model_pipeline = load("scam_finder.joblib")
+model_pipeline = load("/home/xlancer4/proj/scam_finder.joblib")
 result = ""
 probability = ""
 apikey=os.environ.get('GoogleMapAPIKey')#retrieve environment variable
-df=pd.read_csv('fake_job_postings.csv')
-
-
 def get_prediction(query):
     res = model_pipeline.predict_proba([query])
     real = res[0][0]
     scam = res[0][1]
     if real <= scam: return "Scam", str(float(round(scam,4)*100))+'%'
     return "Real",  str(float(round(real,4)*100))+'%'
-
-app = Flask(__name__, template_folder="pages")
+app = Flask(__name__, template_folder="pages/forms")
 def word(filename, final_type): # function to tokenize text 
         tok_sent = nltk.sent_tokenize(filename)
         tok_word = []
@@ -39,14 +32,10 @@ def word(filename, final_type): # function to tokenize text
             return tok_sent
         elif final_type == 'word':
             return final_text
-
 def check(text):
         g = GingerIt()
         h = g.parse(text)
         return len(h['corrections'])
-
-
-
 #verify company address
 def get_map_info(address):
     gmaps = googlemaps.Client(key=apikey)
@@ -58,17 +47,12 @@ def get_map_info(address):
         if 'plus_code' in geocode_result:
             output="The Company address is valid"
         else:
+                 
             output="This address is vague, This job invite is likely a scam"
     return output #return desinated string content
-
-
-
-
 @app.route('/')
 def home():
-    return render_template('forms/Home.html')
-
-
+    return render_template('main.html')
 @app.route('/', methods=['POST', 'GET'])
 def get_data():
     if request.method == 'POST':
@@ -87,10 +71,11 @@ def get_data():
             address='You did not provide any company address.'
         result, probability = get_prediction(text)
  
-        return render_template('forms/Home.html', result=result, prob = probability,mis=mistake, map=address)
+        return render_template('main.html', result=result, prob = probability,mis=mistake, map=address)
+
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='10.182.0.2',port='5000')
     
     
