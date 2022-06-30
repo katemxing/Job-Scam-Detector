@@ -11,3 +11,4 @@
 
 **fake_job_postings.csv**: database of scams
 
+[**ML Model.ipynb**](https://github.com/katemxing/Job-Scam-Detector/blob/main/ML%20Model.ipynb): classifier model training process
